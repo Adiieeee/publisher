@@ -13,3 +13,6 @@ d. Screen shot consoles
 - ![alt text](image-1.png)
 - Setelah melakukan cargo run di publisher maka console subscriber akan memunculkan 5 data sesuai dengan program
 
+e. spike when running publisher
+- ![alt text](image-2.png)
+- spike muncul karena pengiriman reuqest cargo run pada publisher
