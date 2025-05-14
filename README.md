@@ -1,0 +1,7 @@
+a. How much data your publisher program will send to the message broker in one
+run?
+- Program publisher akan mengirimkan 5 buah pesan ke message broker, di mana setiap pesan berisi objek UserCreatedEventMessage yang memiliki dua field yaitu user_id dan user_name. Karena setiap pesan berbeda dan memiliki nilai string yang unik, maka total data yang dikirim tergantung pada ukuran serialisasi Borsh dari lima objek tersebut. Secara kasar, setiap pesan membawa data string yang panjangnya sekitar 20-30 byte, sehingga secara total program akan mengirimkan kira-kira antara 100 hingga 200 byte ke message broker dalam satu kali eksekusi, tergantung panjang nama dan efisiensi encoding-nya.
+
+b. The url of: “amqp://guest:guest@localhost:5672” is the same as in the subscriber
+program, what does it mean?
+- URL amqp://guest:guest@localhost:5672 menunjukkan bahwa baik publisher maupun subscriber terhubung ke broker RabbitMQ yang sama, yaitu yang berjalan secara lokal (localhost) pada port default AMQP yaitu 5672. guest:guest adalah kredensial login default (username dan password) untuk masuk ke broker tersebut. Karena URL-nya sama, maka pesan yang dipublikasikan oleh publisher akan dikirim ke broker yang juga didengarkan oleh subscriber, sehingga keduanya bisa saling terhubung dan bertukar pesan melalui channel "user_created".
